@@ -45,6 +45,12 @@ import { StockCodeService } from './../providers/stockcode.service';
                             <b>StockCode</b>: {{selectedStockCode.stockcode}}<br>
                             <b>Description</b>: {{selectedStockCode.description}}<br>
                             <b>LongDesc:</b> {{selectedStockCode.longdesc}}<br>
+                            <b>altkey1:</b> {{selectedStockCode.alternatekey1}}<br>
+                            <b>altkey2:</b> {{selectedStockCode.alternatekey2}}<br>
+                            <b>stockuom:</b> {{selectedStockCode.stockuom}}<br>
+                            <b>partcategory:</b> {{selectedStockCode.partcategory}}<br>
+                            <b>mass:</b> {{selectedStockCode.mass}}<br>
+                            <b>volume:</b> {{selectedStockCode.volume}}<br>
                             <!--Popup option selected: {{selectedOption}}-->
                         </p>
                     </md-card-content>

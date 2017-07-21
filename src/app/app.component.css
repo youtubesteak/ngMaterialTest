@@ -1,3 +1,6 @@
 .flex-spacer {
   flex: 1 1 auto;
 }
+input.biginput {
+    font-size: 40px;
+}

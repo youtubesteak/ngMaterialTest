@@ -354,8 +354,6 @@ app.get('/', function(req, res) {
         '/module/' + '/action/' + '/:options' 
         module:
             singular/plural, singular where only 1 will be returned
-        actions:
-            search : searches for item based on parameters(query, actually, but whatever)
     */
 
 
@@ -410,109 +408,75 @@ app.get('/', function(req, res) {
 
     //serials
         //serial
-            app.get('/db/serial/:serial/', function(req, res) {
-                Serial.findOne({
-                    attributes: [ 'serial' , 'stockcode', 'warehouse'],
-                    where: { serial: req.params.serial }
-                }).then(data => {
-                    res.json({data});
-                });
-            });
 
-        //serials
-        app.get('/db/serials', function(req, res) {
+        app.get('/db/serials/', function(req,res) {
             Serial.findAll({
-            }).then(data => {
-                res.json({data});
-            });
-        });
-
-        app.get('/db/serials/:serial/', function(req, res) {
-            Serial.findOne({
-                attributes: [ 'serial' , 'stockcode', 'warehouse'],
-                where: { serial: req.params.serial }
-            }).then(data => {
-                res.json({data});
-            });
-        });
-
-        app.get('/db/serials/find/:serial/', function(req, res) {
-            Serial.findAll({
-                attributes: [ 'serial' , 'stockcode', 'warehouse'],
-                where: { serial: req.params.serial }
-            }).then(data => {
-                res.json({data});
-            });
-        });
-
-        app.get('/db/serialssearch', function(req,res) {
-            Serial.findAll({
-                attributes: [ 'serial' , 'stockcode', 'warehouse' ],
-                where: { serial: req.query.serial }
+                where: req.query
             }).then(data => {
                 res.json({data});
             });
         });
     
-        //serialcus
-            app.get('/db/serialcus/:serial/:stockcode/:warehouse/', function(req, res) {
-                Serial.findAll({
-                    where: {
-                        serial: req.params.serial,
-                        stockcode: req.params.stockcode,
-                        warehouse: req.params.warehouse
-                    }
+        //serials/custom
+            app.get('/db/serials/custom', function(req, res) {
+                SerialCus.findAll({
+                    where: req.query
                 }).then(data => {
                     res.json({data});
                 });
             });
 
     //stockcodes
-        app.get('/db/stockcodes', function(req, res) {
+        app.get('/db/stockcodes/', function(req, res) {
             StockCode.findAll({
-                limit: 20
+                limit: 20,
+                where: req.query
             }).then(data => {
                 res.json({data});
             });
         });
-        app.get('/db/stockcode/:stockcode', function(req, res) {
-            StockCode.findOne({
-                where: {
-                    stockcode : req.params.stockcode
-                }
-            }).then(data => {
-                res.json({data});
+        //stockcodes/custom
+            app.get('/db/stockcodes/custom', function(req, res) {
+                StockCode.findAll({
+                    limit: 20,
+                    where: req.query
+                }).then(data => {
+                    res.json({data});
+                });
             });
+
+    //testing 
+    app.get('/db/stockcodes2/', function(req, res) {
+        params = procquery(req.query);
+        StockCode.findAll(params).then(data => {
+            res.json({data});
         });
-        app.get('/db/stockcodes/search', function(req, res) {
-            var query = User.find({});
+    });
+    
+    app.get('/db/test/', function(req, res) {
+        params = procquery(req.query);
+        res.json(params);
+    });
 
-            /*Object.keys(req.query).forEach(function(keyvalue) {
-                console.log(key);
-                console.log(value)
-                query.where(key).regex(new RegExp(req.query[key]));
-            });*/
-            Object.keys(o).forEach(function(key) {
-                var val = o[key];
-                logic();
-            });
-            
-            /*
-            if (req.query.username) {
-                query.where('username').regex(new RegExp(req.query.username));
-            }
-            if (req.query.email) {
-                query.where('email').regex(new RegExp(req.query.email));
-            }*/
 
-            /*query.select('username', 'email');
-            query.exec(function(err, users) {
-                if (err) throw err;
-                res.json(users);
-            });*/
+    function procquery(params) {
+        if(!params.limit){ params.limit = 20 };
+        revparams = {where:params,limit:params.limit}; //set default limit
+        console.log(revparams);
 
-        });
+        
+        position = revparams.where.indexOf('limit');
+        console.log(position);
 
+        //params.indexOf(params.limit); //produces location in array of value for splice
+        //params.splice(0,0,"where");
+        //params.split(2,0,"limit");
+        //params = revparams;
+        console.log(revparams);
+        return revparams;
+    }
+
+//server declarations
 
 const port = "3001";
 const host = "localhost";
