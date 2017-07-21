@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './imports/material.module';
 import { NgSpinKitModule } from 'ng-spin-kit';
 
+//import { PagesModule } from './imports/pages.module';
+
 
 import { AppComponent } from './app.component';
 import { ROUTES } from './app.routes';
@@ -21,12 +23,14 @@ import { FocusDirective } from './directives/focus.directive';
 
 import { DialogComponent } from './pages/dialog';
 
+
 import { HomeComponent } from './pages/home';
 
-import { TestbedComponent } from './pages/testbed';
+import { TestBedComponent } from './pages/testbed';
 import { HeroesComponent } from './pages/heroes';
 import { SerialsComponent } from './pages/serials';
 import { SerialMoveComponent } from './pages/serialmove';
+import { StockCodesComponent } from './pages/stockcodes';
 
 import 'hammerjs';
 
@@ -34,7 +38,7 @@ import 'hammerjs';
   declarations: [
     AppComponent,
     HomeComponent,
-    TestbedComponent,
+    TestBedComponent,
     DialogComponent,
     HeroesComponent,
     SerialsComponent,

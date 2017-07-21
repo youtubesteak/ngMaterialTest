@@ -14,7 +14,7 @@ import { DialogComponent } from './dialog';
   styles: [`
   `]
 })
-export class TestbedComponent{
+export class TestBedComponent {
   selectedOption: string;
   public title: any;
   public content: any;

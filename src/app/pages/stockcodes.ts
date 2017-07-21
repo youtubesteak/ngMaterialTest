@@ -5,48 +5,48 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { DialogComponent } from './dialog';
 
-import { Serial } from './../models/serial';
-import { SerialService } from './../providers/serial.service';
+import { StockCode } from './../models/stockcode';
+import { StockCodeService } from './../providers/stockcode.service';
 
 @Component({
-    selector: 'serials',
+    selector: 'stockcodes',
     template: `
-        <div class="serialscontainer">
+        <div class="stockcodescontainer">
             <div class="leftpane">
-                <md-nav-list *ngIf="serials">
-                    <h3 md-subheader>Serials</h3>
+                <md-nav-list *ngIf="stockcodes">
+                    <h3 md-subheader>StockCodes</h3>
                     <md-divider></md-divider>
                     <a md-list-item
-                        class="serial-item"
-                        *ngFor="let serial of serials"
-                        [class.selected]="serial === selectedSerial"
-                        (click)="onSelect(serial)"
+                        class="stockcode-item"
+                        *ngFor="let stockcode of stockcodes"
+                        [class.selected]="stockcode === selectedStockCode"
+                        (click)="onSelect(stockcode)"
                     >
-                        <h3 md-line> <b>{{serial.serial}}</b> </h3>
+                        <h3 md-line> <b>{{stockcode.stockcode}}</b> </h3>
                         <p md-line>
-                            <span> {{serial.stockcode}} </span>
-                            <span class="demo-2"> | {{serial.warehouse}} </span>
+                            <span> {{stockcode.stockcode}} </span>
+                            <span class="demo-2"> | {{stockcode.warehouse}} </span>
                         </p>
                     </a>
                 </md-nav-list>
-                <md-progress-spinner *ngIf="!serials" style="margin:0 auto;" mode="indeterminate"></md-progress-spinner>
+                <md-progress-spinner *ngIf="!stockcodes" style="margin:0 auto;" mode="indeterminate"></md-progress-spinner>
                 <sk-folding-cube></sk-folding-cube>
             </div>
-            <div class="rightpane" *ngIf="selectedSerial">
-                <h3>Selected Serial</h3>
-                <md-card *ngIf="selectedSerial">
+            <div class="rightpane" *ngIf="selectedStockCode">
+                <h3>Selected StockCode</h3>
+                <md-card *ngIf="selectedStockCode">
                     <md-card-header>
 
                     </md-card-header>
-                    <md-card-title>Serial: {{selectedSerial.serial | uppercase}}</md-card-title>
-                    <md-card-subtitle>{{selectedSerial.stockcode}}  |  {{selectedSerial.warehouse}}</md-card-subtitle>
+                    <md-card-title>StockCode: {{selectedStockCode.stockcode | uppercase}}</md-card-title>
+                    <md-card-subtitle>{{selectedStockCode.stockcode}}  |  {{selectedStockCode.warehouse}}</md-card-subtitle>
                     <md-card-content>
                         <p>
-                            <b>StockCode</b>: {{selectedSerial.stockcode}}<br>
-                            <b>Warehouse</b>: {{selectedSerial.warehouse}}<br>
-                            <b>Lot:</b> {{selectedSerial.lot}}<br>
-                            <b>QtyOnHand</b> {{selectedSerial.qtyonhand}}<br>
-                            <b>QtyAvailable</b> {{selectedSerial.qtyavailable}}<br>
+                            <b>StockCode</b>: {{selectedStockCode.stockcode}}<br>
+                            <b>Warehouse</b>: {{selectedStockCode.warehouse}}<br>
+                            <b>Lot:</b> {{selectedStockCode.lot}}<br>
+                            <b>QtyOnHand</b> {{selectedStockCode.qtyonhand}}<br>
+                            <b>QtyAvailable</b> {{selectedStockCode.qtyavailable}}<br>
                             <!--Popup option selected: {{selectedOption}}-->
                         </p>
                     </md-card-content>
@@ -60,22 +60,21 @@ import { SerialService } from './../providers/serial.service';
                 <md-card>
                     <md-card-title> Custom Fields </md-card-title>
                     <md-card-content>
-                        Width: {{selectedSerial.width}}<br> 
-                        Defect Code: 
-                        Defect Description:
+                        Width: {{selectedStockCode.width}}<br> 
+
                     </md-card-content>
                     <md-card-actions>
                         <button md-raised-button 
                             color="primary" class="action-button"
-                            (click)="openDialog()" disabled>EDIT</button>
+                            (click)="openDialog()" disabled>ACTIONS</button>
                     </md-card-actions>
                 </md-card>
-                <p *ngIf="!selectedSerial">No Serial Selected!</p>
+                <p *ngIf="!selectedStockCode">No StockCode Selected!</p>
             </div>
         </div>
     `,
     styles: [`
-        .serialscontainer {
+        .stockcodescontainer {
             width: 100%;
         }
         .leftpane {
@@ -87,15 +86,15 @@ import { SerialService } from './../providers/serial.service';
             height: 80em;
             padding: 10px;
         }
-        .serial-item {
+        .stockcode-item {
             margin: 2px;
             box-shadow: 1px 1px 1px;
         }
-        .serial-item.selected {
+        .stockcode-item.selected {
             background: whitesmoke;
             box-shadow: 1px 1px 1px 1px inset;
         }
-        .serial-item.selected:hover {
+        .stockcode-item.selected:hover {
         }
         .action-button{
             float: right;
@@ -104,28 +103,28 @@ import { SerialService } from './../providers/serial.service';
     `],
     encapsulation: ViewEncapsulation.None
 })
-export class SerialsComponent implements OnInit {
-    serials: Serial[];
-    selectedSerial: Serial;
-    serialsearching: boolean;
+export class StockCodesComponent implements OnInit {
+    stockcodes: StockCode[];
+    selectedStockCode: StockCode;
+    stockcodesearching: boolean;
 
     constructor(
         private router: Router,
-        private serialService: SerialService,
+        private stockcodeService: StockCodeService,
         public dialog: MdDialog
     ) { }
 
     ngOnInit(): void {
-        this.getSerials();
+        this.getStockCodes();
     }
 
-    getSerials(): void {
-        this.serialService.getSerials().then(serials => this.serials = serials);
-        console.log(this.serials);
+    getStockCodes(): void {
+        this.stockcodeService.getStockCodes().then(stockcodes => this.stockcodes = stockcodes);
+        console.log(this.stockcodes);
     }
 
-    onSelect(serial: Serial): void {
-        this.selectedSerial = serial;
+    onSelect(stockcode: StockCode): void {
+        this.selectedStockCode = stockcode;
     }
 
     selectedOption: string;
@@ -150,7 +149,7 @@ export class SerialsComponent implements OnInit {
                 this.openDialog();
             }
             else if(result == "Cancel"){
-                this.selectedSerial;
+                this.selectedStockCode;
             }
         });
     }

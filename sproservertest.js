@@ -57,6 +57,33 @@ const Serial = sequelize.define(
     }
 );
 
+const StockCode = sequelize.define(
+    'stockcode',{
+        stockcode: {
+            type: Sequelize.STRING(30),
+            primaryKey: true,
+            unique: true,
+            field: 'StockCode'
+        },
+        description: {
+            type: Sequelize.STRING(10),
+            primaryKey: true,
+            field: 'Description'
+        },
+        longdesc: {
+            type: Sequelize.STRING(30),
+            primaryKey: true,
+            field: 'LongDesc'
+        }
+    },
+    {
+        timestamps: false,
+        freezeTableName: true,
+        tableName: 'InvMaster'
+    }
+);
+
+
 // ! DO NOT DO THIS. force: true will drop the table if it already exists
 
 //!TEST ENVIRO CONNECTS TO SPRO TEST COMPANY SQL DB, THE SQL ACCOUNT DOES!!!!!! 
@@ -130,6 +157,18 @@ app.get('/', function(req, res) {
                 res.json({data});
             });
         });
+
+    //stockcodes
+        app.get('/db/stockcodes', function(req, res) {
+            StockCode.findAll({
+                limit: 20
+            }).then(data => {
+                res.json({data});
+            });
+        });
+
+
+//dfm        
 
         app.get('/dfm/invtsr/:serial/:stockcode/:warehouse/:location', function(req, res) {
             console.log('New DFM post:');

@@ -77,48 +77,98 @@ const Serial = sequelize.define(
     }
 );
 
-const SalesOrder = sequelize.define('salesorder', {
-    salesorder: {
-        type: Sequelize.NUMERIC,
-        allowNull: false,
-        unique: true
-    }
-})
-
-const Hero = sequelize.define('hero', {
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+const StockCode = sequelize.define(
+    'stockcode',{
+        stockcode: {
+            type: Sequelize.STRING(30),
+            primaryKey: true,
+            unique: true,
+            field: 'StockCode'
+        },
+        description: {
+            type: Sequelize.STRING(10),
+            field: 'Description'
+        },
+        longdesc: {
+            type: Sequelize.STRING(30),
+            field: 'LongDesc'
+        }
     },
-    info: { type: Sequelize.STRING },
-    email: { type: Sequelize.STRING }
-})
+    {
+        timestamps: false,
+        freezeTableName: true,
+        tableName: 'InvMaster'
+    }
+);
+
 
 // force: true will drop the table if it already exists
 User.sync({force: true});
 
 Serial.sync({force: true}).then(() => {
-    Serial.create({ serial: '00402040', stockcode: 'PF65-0022-UP', warehouse: '01'});
-    Serial.create({ serial: '00402044', stockcode: 'PF65-0022-df', warehouse: '01'});
-    Serial.create({ serial: '00204040', stockcode: 'PF64-0045-UP', warehouse: '01'});
-    Serial.create({ serial: '00402030', stockcode: 'PF65-0022-UP', warehouse: '02'});
-    Serial.create({ serial: '03245102', stockcode: 'PF22-0022-UP', warehouse: 'RM'});
+    Serial.create({"serial":"0771370606A1","warehouse":"01","stockcode":"5301-0033-AP",
+        "location":"01","lot":"078151","qtyonhand":317.52,"qtyavailable":317.52,"qtyreceived":317.52 });
+    Serial.create({"serial":"0771370702A","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370702A1","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370704A","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370704A1","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370705A","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370705A1","warehouse":"0 1","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370706A1","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":308.7,"qtyavailable":308.7,"qtyreceived":308.7});
+    Serial.create({"serial":"0771370804A","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370804A1","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370805A","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370805A1","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370806B","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"78151",
+        "qtyonhand":313.11,"qtyavailable":313.11,"qtyreceived":313.11});
+    Serial.create({"serial":"0771370901A","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":313.11,"qtyavailable":313.11,"qtyreceived":313.11});
+    Serial.create({"serial":"0771370901A1","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":313.11,"qtyavailable":313.11,"qtyreceived":313.11});
+    Serial.create({"serial":"0771370903A","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"0771370903A1","warehouse":"01","stockcode":"5301-0033-AP","location":"01","lot":"078151",
+        "qtyonhand":264.6,"qtyavailable":264.6,"qtyreceived":264.6});
+    Serial.create({"serial":"108888L","warehouse":"01","stockcode":"5301-0033-AP","location":"706E",
+        "lot":"000000000073948","qtyonhand":117,"qtyavailable":117,"qtyreceived":225});
+    Serial.create({"serial":"08869C21","warehouse":"SR","stockcode":"5301-0033-AP","location":"506A",
+        "lot":"000000000071439","qtyonhand":39,"qtyavailable":39,"qtyreceived":39});
+    Serial.create({"serial":"108889L","warehouse":"SR","stockcode":"5301-0033-AP","location":" ",
+        "lot":"000000000073948","qtyonhand":50,"qtyavailable":50,"qtyreceived":50});
 });
 
-Hero.sync({force:true}).then(() => {
-  // Table created
-    Hero.create({ name: 'Zero' });
-    Hero.create({ name: 'Mr. Nice' });
-    Hero.create({ name: 'Narco' });
-    Hero.create({ name: 'Bombasto' });
-    Hero.create({ name: 'Celeritas' });
-    Hero.create({ name: 'Magneta' });
-    Hero.create({ name: 'RubberMan' });
-    Hero.create({ name: 'Dynama' });
-    Hero.create({ name: 'Dr IQ' });
-    Hero.create({ name: 'Magma' });
-    Hero.create({ name: 'Tornado' });
+StockCode.sync({force: true}).then(() => {
+        StockCode.create({"stockcode":"1.5 MIL FLAT POLY BAGS","description":"BAGS FOR MATS","longdesc":"9\" X 18\"  1000/CASE"});
+        StockCode.create({"stockcode":"12\"-300-SEAMTAPE","description":"MOISTURE BARRIER","longdesc":" "});
+        StockCode.create({"stockcode":"16/30 GREEN/BLK SUPER SACK","description":"16/30 GREEN/BLACK","longdesc":"GREEN/ BLACK"});
+        StockCode.create({"stockcode":"16/30 RAW SAND","description":"16/30 RAW SAND","longdesc":"NATURAL"});
+        StockCode.create({"stockcode":"20/40 GRN. SAND","description":"20/40 GREEN SAND","longdesc":"GREEN"});
+        StockCode.create({"stockcode":"20/40 RAW SAND","description":"20/40 RAW SAND","longdesc":" "});
+        StockCode.create({"stockcode":"30/50 ENVIROFILL","description":"30/50 BLK/GRN","longdesc":"50 LB. BAG"});
+        StockCode.create({"stockcode":"32'-6\" SEAM TAPE","description":"POLY TAPE","longdesc":" "});
+        StockCode.create({"stockcode":"35BM-0044-5W","description":" 3 x 5 SOFTBALL BATTER'S MAT","longdesc":"DG/OG"});
+        StockCode.create({"stockcode":"37BM-0004-5W","description":" 3 x 7 SOFTBALL BATTER'S MAT","longdesc":"MOSS GREEN"});
+        StockCode.create({"stockcode":"37BM-0005-5W","description":"3 X 7 SOFTBALL BATTER'S MAT","longdesc":"PINE GREEN"});
+        StockCode.create({"stockcode":"37BM-0044-5N","description":" 3 x 7 SOFTBALL BATTER'S MAT","longdesc":"DG/OG"});
+        StockCode.create({"stockcode":"37BM-0044-5W","description":" 3 x 7 SOFTBALL BATTER'S MAT","longdesc":"DG/OG"});
+        StockCode.create({"stockcode":"37BM-0055-5W","description":"3 X 7 SOFTBALL BATTER'S MAT","longdesc":"CLAY"});
+        StockCode.create({"stockcode":"37BM-0125-5N","description":"3 X 7 SOFTBALL BATTER'S MAT","longdesc":"Wintergreen"});
+        StockCode.create({"stockcode":"3M847-5GAL","description":"EXTRA FLAMMABLE ADHESIVE","longdesc":"OBSOLETE"});
+        StockCode.create({"stockcode":"3M847-QUART","description":"EXTRA FLAMMABLE ADHESIVE","longdesc":"OBSOLETE"});
+        StockCode.create({"stockcode":"3ODF-0007-5W","description":"3' ON DECK CIRCLE","longdesc":"FLA.BLUE"});
+        StockCode.create({"stockcode":"3X3 FLOATING GREEN PAD","description":"3X3 FLOATING GREEN PAD","longdesc":" "});
+        StockCode.create({"stockcode":"4\" PRACTICE GREEN CUP","description":"STD. GOLF SKU #18100","longdesc":" "});
 });
 
 
@@ -197,41 +247,10 @@ app.get('/', function(req, res) {
             });
         });
 
-    //heroes
-        app.get('/db/heroes', function(req, res) {
-            Hero.findAll({
-                attributes: [ 'id' , 'name']
-            }).then(data => {
-                res.json({data});
-            });
-        });
-
-        app.get('/db/heroes/:id', function(req, res) {
-            Hero.findById(req.params.id).then(data => {
-                res.json({data});
-            });
-        });
-
-        app.get('/db/heroessearch', function(req,res) {
-            Hero.findAll({
-                attributes: [ 'id' , 'name' ],
-                where: { name: req.query.name }
-            }).then(data => {
-                res.json({data});
-            });
-        });
-
-        app.get('/db/heroes/:id/update', function(req,res) {
-            var data = [
-                
-            ];
-            res.json('updated!');
-        });
 
     //serials
         app.get('/db/serials', function(req, res) {
             Serial.findAll({
-                attributes: [ 'serial' , 'stockcode', 'warehouse']
             }).then(data => {
                 res.json({data});
             });
@@ -259,6 +278,15 @@ app.get('/', function(req, res) {
             Serial.findAll({
                 attributes: [ 'serial' , 'stockcode', 'warehouse' ],
                 where: { serial: req.query.serial }
+            }).then(data => {
+                res.json({data});
+            });
+        });
+
+    //stockcodes
+        app.get('/db/stockcodes', function(req, res) {
+            StockCode.findAll({
+                limit: 20
             }).then(data => {
                 res.json({data});
             });

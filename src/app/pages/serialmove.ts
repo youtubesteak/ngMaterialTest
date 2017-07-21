@@ -20,9 +20,6 @@ import { SerialService } from './../providers/serial.service';
 @Component({
     selector: 'serial-move',
     template: `
-        <button md-mini-fab class="fixed-fab" (click)="clearData()">
-            <md-icon class="md-45" color="warn">clear</md-icon>
-        </button>
         <div class="serialscontainer">
             <md-card>
                 <md-card-title *ngIf="!serials">
@@ -74,15 +71,6 @@ import { SerialService } from './../providers/serial.service';
                 </a>
             </md-nav-list>
             <br>
-            <!--<md-card *ngIf="selectedSerial" style="background:slategray;color:white !important;">
-                <md-card-title><b>Serial:</b>   {{selectedSerial.serial | uppercase}}</md-card-title>
-                <md-card-content>
-                    <p>
-                        Stockcode:  {{selectedSerial.stockcode}}<br>
-                        Warehouse: {{selectedSerial.warehouse}}
-                    </p>
-                </md-card-content>
-            </md-card>-->
             <md-card *ngIf="selectedSerial">
                 <md-card-title>
                     2. Enter Location
