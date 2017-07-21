@@ -66,14 +66,84 @@ const StockCode = sequelize.define(
             field: 'StockCode'
         },
         description: {
-            type: Sequelize.STRING(10),
-            primaryKey: true,
+            type: Sequelize.STRING(50),
             field: 'Description'
         },
         longdesc: {
-            type: Sequelize.STRING(30),
-            primaryKey: true,
+            type: Sequelize.STRING(100),
             field: 'LongDesc'
+        },
+        alternatekey1: {
+            type: Sequelize.STRING(20),
+            field: 'AlternateKey1'
+        },
+        alternatekey2: {
+            type: Sequelize.STRING(20),
+            field: 'AlternateKey2'
+        },
+        stockuom: {
+            type: Sequelize.STRING(10),
+            field: 'StockUom'
+        },
+        alternateuom: {
+            type: Sequelize.STRING(20),
+            field: 'AlternateUom'
+        },
+        otheruom: {
+            type: Sequelize.STRING(20),
+            field: 'OtherUom'
+        },
+        partcategory: {
+            type: Sequelize.STRING(20),
+            field: 'PartCategory'
+        },
+        mass: {
+            type: Sequelize.STRING(20),
+            field: 'Mass'
+        },
+        volume: {
+            type: Sequelize.STRING(20),
+            field: 'Volume'
+        },
+        decimals: {
+            type: Sequelize.STRING(20),
+            field: 'Decimals'
+        },
+        productclass: {
+            type: Sequelize.STRING(20),
+            field: 'ProductClass'
+        },
+        userfield1: {
+            type: Sequelize.STRING(20),
+            field: 'UserField1'
+        },
+        userfield2: {
+            type: Sequelize.STRING(20),
+            field: 'UserField2'
+        },
+        userfield3: {
+            type: Sequelize.STRING(20),
+            field: 'UserField3'
+        },
+        userfield4: {
+            type: Sequelize.STRING(20),
+            field: 'UserField4'
+        },
+        userfield5: {
+            type: Sequelize.STRING(20),
+            field: 'UserField5'
+        },
+        stockonhold: {
+            type: Sequelize.STRING(20),
+            field: 'StockOnHold'
+        },
+        stockonholdreason: {
+            type: Sequelize.STRING(20),
+            field: 'StockOnHoldReason'
+        },
+        datestkadded: {
+            type: Sequelize.STRING(20),
+            field: 'DateStkAdded'
         }
     },
     {

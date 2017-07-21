@@ -25,7 +25,7 @@ import { StockCodeService } from './../providers/stockcode.service';
                         <h3 md-line> <b>{{stockcode.stockcode}}</b> </h3>
                         <p md-line>
                             <span> {{stockcode.stockcode}} </span>
-                            <span class="demo-2"> | {{stockcode.warehouse}} </span>
+                            <span class="demo-2"> {{stockcode.description}} | {{stockcode.longdesc}} </span>
                         </p>
                     </a>
                 </md-nav-list>
@@ -39,14 +39,12 @@ import { StockCodeService } from './../providers/stockcode.service';
 
                     </md-card-header>
                     <md-card-title>StockCode: {{selectedStockCode.stockcode | uppercase}}</md-card-title>
-                    <md-card-subtitle>{{selectedStockCode.stockcode}}  |  {{selectedStockCode.warehouse}}</md-card-subtitle>
+                    <md-card-subtitle>{{selectedStockCode.description}}  |  {{selectedStockCode.longdesc}}</md-card-subtitle>
                     <md-card-content>
                         <p>
                             <b>StockCode</b>: {{selectedStockCode.stockcode}}<br>
-                            <b>Warehouse</b>: {{selectedStockCode.warehouse}}<br>
-                            <b>Lot:</b> {{selectedStockCode.lot}}<br>
-                            <b>QtyOnHand</b> {{selectedStockCode.qtyonhand}}<br>
-                            <b>QtyAvailable</b> {{selectedStockCode.qtyavailable}}<br>
+                            <b>Description</b>: {{selectedStockCode.description}}<br>
+                            <b>LongDesc:</b> {{selectedStockCode.longdesc}}<br>
                             <!--Popup option selected: {{selectedOption}}-->
                         </p>
                     </md-card-content>
@@ -60,13 +58,11 @@ import { StockCodeService } from './../providers/stockcode.service';
                 <md-card>
                     <md-card-title> Custom Fields </md-card-title>
                     <md-card-content>
-                        Width: {{selectedStockCode.width}}<br> 
-
                     </md-card-content>
                     <md-card-actions>
                         <button md-raised-button 
                             color="primary" class="action-button"
-                            (click)="openDialog()" disabled>ACTIONS</button>
+                            (click)="openDialog()" disabled>EDIT</button>
                     </md-card-actions>
                 </md-card>
                 <p *ngIf="!selectedStockCode">No StockCode Selected!</p>

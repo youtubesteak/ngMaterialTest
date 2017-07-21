@@ -7,7 +7,7 @@ import { TestBedComponent } from './pages/testbed';
 import { SerialsComponent } from './pages/serials';
 import { SerialMoveComponent } from './pages/serialmove';
 
-//import { StockCodesComponent } from './pages/stockcodes';
+import { StockCodesComponent } from './pages/stockcodes';
 //import { PagesModule } from './imports/pages.module';
 
 
@@ -16,6 +16,6 @@ export const ROUTES: Routes = [
   { path: 'testbed', component: TestBedComponent },
   { path: 'serials', component: SerialsComponent },
   { path: 'serialmove', component: SerialMoveComponent },
-  //{ path: 'stockcodes', component: StockCodesComponent },
+  { path: 'stockcodes', component: StockCodesComponent },
   { path: '**', redirectTo: '' }
 ];

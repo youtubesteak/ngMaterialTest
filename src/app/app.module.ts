@@ -18,6 +18,7 @@ import { ROUTES } from './app.routes';
 
 import { HeroService } from './providers/hero.service';
 import { SerialService } from './providers/serial.service';
+import { StockCodeService } from './providers/stockcode.service';
 
 import { FocusDirective } from './directives/focus.directive';
 
@@ -27,9 +28,10 @@ import { DialogComponent } from './pages/dialog';
 import { HomeComponent } from './pages/home';
 
 import { TestBedComponent } from './pages/testbed';
-import { HeroesComponent } from './pages/heroes';
+
 import { SerialsComponent } from './pages/serials';
 import { SerialMoveComponent } from './pages/serialmove';
+
 import { StockCodesComponent } from './pages/stockcodes';
 
 import 'hammerjs';
@@ -40,9 +42,9 @@ import 'hammerjs';
     HomeComponent,
     TestBedComponent,
     DialogComponent,
-    HeroesComponent,
     SerialsComponent,
     SerialMoveComponent,
+    StockCodesComponent,
     FocusDirective
   ],
   imports: [
@@ -59,7 +61,8 @@ import 'hammerjs';
   ],
   providers: [
     HeroService,
-    SerialService
+    SerialService,
+    StockCodeService
   ],
   bootstrap: [
     AppComponent
